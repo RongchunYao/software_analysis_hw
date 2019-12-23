@@ -60,11 +60,11 @@ class Asm2VecModel:
             else:
                 self.vocabulary[token] -= self.lr*(grad_in_prior[self.d:])
 
-        for index, token in enumerate(self._getTokens(seqs[1])):
+        for index, token in enumerate(self._getTokens(seqs[2])):
             if index == 0:
-                self.vocabulary[token] -= self.lr*(grad_in_prior[:self.d])
+                self.vocabulary[token] -= self.lr*(grad_in_later[:self.d])
             else:
-                self.vocabulary[token] -= self.lr*(grad_in_prior[self.d:])
+                self.vocabulary[token] -= self.lr*(grad_in_later[self.d:])
         
         self.functions[func_name] -= self.lr*(grad_theta)
 
